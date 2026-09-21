@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Para ti ✨</title>
+<title>Un regalo para ti ✨</title>
 
 <style>
 *{
@@ -13,328 +13,500 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
+html,body{
+    width:100%;
+    min-height:100%;
 }
 
 body{
-    font-family:Georgia, "Times New Roman", serif;
+    font-family:Georgia,"Times New Roman",serif;
     background:
-        radial-gradient(circle at 20% 20%, rgba(160,90,255,.16), transparent 30%),
-        radial-gradient(circle at 80% 70%, rgba(255,190,80,.10), transparent 30%),
-        linear-gradient(135deg,#08040f,#160820,#090511);
+        radial-gradient(circle at 50% 35%,#32133e 0%,#15091d 38%,#060309 100%);
     color:white;
+    overflow:hidden;
+}
+
+/* FONDO */
+
+#app{
     min-height:100vh;
-    overflow-x:hidden;
+    position:relative;
+    overflow:hidden;
+}
+
+.background-glow{
+    position:absolute;
+    width:600px;
+    height:600px;
+    border-radius:50%;
+    background:rgba(221,169,62,.08);
+    filter:blur(100px);
+    left:50%;
+    top:35%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+}
+
+/* FLORES DECORATIVAS */
+
+.decor-flower{
+    position:fixed;
+    z-index:3;
+    pointer-events:none;
+    opacity:.72;
+    filter:drop-shadow(0 8px 18px rgba(0,0,0,.35));
+    animation:flowerFloat 7s ease-in-out infinite;
+}
+
+.decor-flower img{
+    width:100%;
+    height:100%;
+    object-fit:contain;
+}
+
+.f1{width:115px;height:115px;left:-15px;top:7%;animation-delay:0s;}
+.f2{width:85px;height:85px;right:2%;top:13%;animation-delay:1.2s;}
+.f3{width:125px;height:125px;left:1%;bottom:7%;animation-delay:2s;}
+.f4{width:75px;height:75px;right:5%;bottom:12%;animation-delay:3s;}
+.f5{width:65px;height:65px;left:19%;top:3%;opacity:.35;animation-delay:1.5s;}
+.f6{width:90px;height:90px;right:20%;bottom:3%;opacity:.35;animation-delay:2.5s;}
+.f7{width:55px;height:55px;right:31%;top:8%;opacity:.25;animation-delay:4s;}
+
+@keyframes flowerFloat{
+    0%,100%{transform:translateY(0) rotate(-3deg);}
+    50%{transform:translateY(-15px) rotate(4deg);}
 }
 
 /* ESTRELLAS */
-body::before{
-    content:"";
-    position:fixed;
+
+.stars{
+    position:absolute;
     inset:0;
     pointer-events:none;
     background-image:
-        radial-gradient(2px 2px at 10% 20%, white, transparent),
-        radial-gradient(1px 1px at 30% 70%, white, transparent),
-        radial-gradient(2px 2px at 60% 30%, white, transparent),
-        radial-gradient(1px 1px at 80% 15%, white, transparent),
-        radial-gradient(2px 2px at 90% 75%, white, transparent),
-        radial-gradient(1px 1px at 45% 90%, white, transparent);
-    opacity:.45;
-    z-index:0;
+        radial-gradient(2px 2px at 15% 20%,rgba(255,255,255,.8),transparent),
+        radial-gradient(1px 1px at 32% 70%,rgba(255,255,255,.7),transparent),
+        radial-gradient(2px 2px at 70% 18%,rgba(255,255,255,.6),transparent),
+        radial-gradient(1px 1px at 82% 42%,rgba(255,255,255,.8),transparent),
+        radial-gradient(1px 1px at 53% 83%,rgba(255,255,255,.6),transparent),
+        radial-gradient(2px 2px at 91% 76%,rgba(255,255,255,.7),transparent);
 }
 
-.container{
-    width:min(1100px,92%);
-    margin:auto;
-    position:relative;
-    z-index:2;
-}
+/* CAPAS */
 
-/* HERO */
-.hero{
-    min-height:100vh;
+.layer{
+    position:absolute;
+    inset:0;
+    z-index:10;
     display:flex;
     align-items:center;
     justify-content:center;
+    padding:25px;
+    opacity:0;
+    visibility:hidden;
+    transform:scale(1.04);
+    transition:opacity .8s ease,transform .8s ease,visibility .8s;
+}
+
+.layer.active{
+    opacity:1;
+    visibility:visible;
+    transform:scale(1);
+}
+
+/* BOTÓN */
+
+.gold-button{
+    border:1px solid rgba(239,199,106,.7);
+    background:linear-gradient(135deg,rgba(239,199,106,.16),rgba(255,255,255,.04));
+    color:#f6d985;
+    padding:15px 30px;
+    border-radius:50px;
+    font-family:Georgia,"Times New Roman",serif;
+    font-size:16px;
+    cursor:pointer;
+    transition:.35s;
+    box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+.gold-button:hover{
+    transform:translateY(-3px);
+    background:rgba(239,199,106,.22);
+    box-shadow:0 15px 40px rgba(0,0,0,.4);
+}
+
+/* CAPA 1 — REGALO */
+
+.gift-content{
     text-align:center;
-    padding:60px 20px;
+    position:relative;
+    z-index:5;
 }
 
-.hero-content{
-    max-width:850px;
-}
-
-.small-title{
-    color:#f3c96b;
+.eyebrow{
+    color:#e9c66f;
     letter-spacing:5px;
+    font-size:12px;
     text-transform:uppercase;
-    font-size:13px;
     margin-bottom:25px;
 }
 
-h1{
-    font-size:clamp(42px,7vw,85px);
+.gift-content h1{
+    font-size:clamp(45px,8vw,90px);
+    font-weight:400;
     line-height:1;
-    font-weight:500;
-    margin-bottom:30px;
-    background:linear-gradient(90deg,#fff,#f5d68a,#fff);
+    margin-bottom:25px;
+    background:linear-gradient(90deg,#fff,#f1d486,#fff);
     -webkit-background-clip:text;
     color:transparent;
 }
 
-.hero p{
-    max-width:650px;
-    margin:auto;
-    font-size:20px;
+.gift-content p{
+    color:#d9cedd;
+    font-size:18px;
     line-height:1.8;
-    color:#ddd4e6;
+    margin-bottom:35px;
 }
 
-.gold-line{
-    width:90px;
-    height:2px;
-    background:#e8bd62;
-    margin:35px auto;
-}
-
-/* BOTÓN MÚSICA */
-.music-btn{
-    margin-top:35px;
-    padding:15px 28px;
-    border:1px solid rgba(238,198,106,.6);
-    background:rgba(255,255,255,.04);
-    color:#f6d887;
-    border-radius:50px;
-    cursor:pointer;
-    font-size:15px;
-    transition:.3s;
-}
-
-.music-btn:hover{
-    background:rgba(238,198,106,.12);
-    transform:translateY(-3px);
-}
-
-/* SECCIONES */
-section{
-    padding:100px 0;
-}
-
-.section-title{
-    text-align:center;
-    margin-bottom:55px;
-}
-
-.section-title span{
-    color:#e9c46a;
-    font-size:13px;
-    letter-spacing:4px;
-    text-transform:uppercase;
-}
-
-.section-title h2{
-    margin-top:12px;
-    font-size:42px;
-    font-weight:500;
-}
-
-/* FOTOS */
-.photos{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:18px;
-}
-
-.photo-card{
+.gift{
+    width:150px;
+    height:125px;
+    margin:0 auto 40px;
     position:relative;
-    height:430px;
-    border-radius:22px;
-    overflow:hidden;
     cursor:pointer;
-    border:1px solid rgba(255,255,255,.12);
-    background:#120b18;
-    transition:.5s;
+    animation:giftPulse 2.5s ease-in-out infinite;
 }
 
-.photo-card:hover{
-    transform:translateY(-12px);
-    border-color:rgba(238,198,106,.7);
-    box-shadow:0 20px 50px rgba(0,0,0,.5);
-}
-
-.photo-card img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    transition:.6s;
-}
-
-.photo-card:hover img{
-    transform:scale(1.08);
-}
-
-.photo-overlay{
+.gift-body{
     position:absolute;
-    inset:auto 0 0;
-    padding:25px 18px;
-    background:linear-gradient(transparent,rgba(0,0,0,.9));
+    left:10px;
+    right:10px;
+    bottom:0;
+    height:82px;
+    background:linear-gradient(135deg,#b88b35,#e3bd62,#967025);
+    border-radius:4px 4px 14px 14px;
+    box-shadow:0 25px 50px rgba(0,0,0,.5);
 }
 
-.photo-overlay span{
-    color:#f1cd73;
-    font-size:12px;
-    letter-spacing:2px;
+.gift-lid{
+    position:absolute;
+    left:0;
+    right:0;
+    top:30px;
+    height:25px;
+    background:linear-gradient(135deg,#d4a84d,#f2d17a,#a67a28);
+    border-radius:6px;
+    z-index:3;
 }
 
-/* FLORES */
-.flowers{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:20px;
+.ribbon-v{
+    position:absolute;
+    width:18px;
+    height:95px;
+    left:66px;
+    top:27px;
+    background:#fff1bf;
+    z-index:4;
+    opacity:.85;
 }
 
-.flower{
-    height:250px;
-    border-radius:20px;
-    overflow:hidden;
-    border:1px solid rgba(255,214,111,.15);
-    background:#110a15;
+.ribbon-h{
+    position:absolute;
+    width:150px;
+    height:13px;
+    left:0;
+    top:37px;
+    background:#fff1bf;
+    z-index:5;
+    opacity:.85;
 }
 
-.flower img{
+.bow{
+    position:absolute;
+    top:7px;
+    left:55px;
+    width:40px;
+    height:35px;
+    z-index:7;
+}
+
+.bow:before,
+.bow:after{
+    content:"";
+    position:absolute;
+    width:28px;
+    height:20px;
+    border:6px solid #f4d886;
+    border-radius:50%;
+    top:5px;
+}
+
+.bow:before{
+    left:-8px;
+    transform:rotate(25deg);
+}
+
+.bow:after{
+    right:-8px;
+    transform:rotate(-25deg);
+}
+
+.gift.opening{
+    animation:giftOpen .8s forwards;
+}
+
+@keyframes giftPulse{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-8px);}
+}
+
+@keyframes giftOpen{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+    100%{transform:scale(.1);opacity:0;}
+}
+
+/* CAPA FOTOS */
+
+.photo-experience{
+    width:min(900px,94vw);
+    text-align:center;
+}
+
+.step-label{
+    color:#eac76f;
+    letter-spacing:4px;
+    font-size:11px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.photo-title{
+    font-size:clamp(28px,5vw,45px);
+    font-weight:400;
+    margin-bottom:25px;
+}
+
+.photo-frame{
+    width:min(390px,78vw);
+    height:min(500px,57vh);
+    margin:auto;
+    border-radius:22px;
+    padding:7px;
+    background:linear-gradient(135deg,#e5bf67,#fff0b7,#a77a28);
+    box-shadow:0 30px 80px rgba(0,0,0,.65);
+    animation:photoAppear .8s ease;
+}
+
+.photo-frame img{
     width:100%;
     height:100%;
     object-fit:cover;
-    transition:.5s;
+    border-radius:17px;
+    display:block;
 }
 
-.flower:hover img{
-    transform:scale(1.08);
+@keyframes photoAppear{
+    from{
+        opacity:0;
+        transform:scale(.92) translateY(20px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
 }
 
-/* MENSAJE FINAL */
-.final{
+.photo-caption{
+    margin:20px auto;
+    max-width:600px;
+    color:#d9cedd;
+    line-height:1.7;
+    font-size:16px;
+}
+
+.photo-controls{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.counter{
+    color:#a99bad;
+    font-size:13px;
+    margin-top:15px;
+}
+
+/* CAPA CARTAS */
+
+.letters{
+    width:min(720px,92vw);
     text-align:center;
-    min-height:80vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
 }
 
-.final-box{
-    max-width:800px;
-    padding:70px 30px;
-    border:1px solid rgba(232,189,98,.25);
-    border-radius:30px;
-    background:rgba(255,255,255,.025);
-    box-shadow:0 30px 80px rgba(0,0,0,.3);
-}
-
-.final-box h2{
-    font-size:clamp(40px,6vw,70px);
-    color:#f0ca70;
-    font-weight:400;
-    margin-bottom:25px;
-}
-
-.final-box p{
-    color:#ddd4e6;
-    font-size:19px;
-    line-height:1.9;
-}
-
-/* MODAL */
-.modal{
-    position:fixed;
-    inset:0;
-    background:rgba(5,2,9,.86);
-    backdrop-filter:blur(12px);
-    display:none;
-    align-items:center;
-    justify-content:center;
-    padding:20px;
-    z-index:100;
-}
-
-.modal.active{
-    display:flex;
-}
-
-.modal-box{
-    width:min(600px,100%);
-    background:linear-gradient(145deg,#1b0d25,#0e0714);
-    border:1px solid rgba(235,196,104,.4);
+.letter-card{
+    background:linear-gradient(145deg,rgba(35,17,43,.94),rgba(13,7,18,.96));
+    border:1px solid rgba(232,190,96,.35);
     border-radius:28px;
-    padding:45px 35px;
-    text-align:center;
-    position:relative;
-    box-shadow:0 30px 100px rgba(0,0,0,.7);
+    padding:50px 40px;
+    box-shadow:0 30px 90px rgba(0,0,0,.55);
+    min-height:300px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    animation:letterAppear .8s ease;
 }
 
-.modal-box h3{
-    color:#f1cc70;
-    font-size:28px;
+.letter-card h2{
+    color:#f0cc76;
     font-weight:400;
+    font-size:32px;
     margin-bottom:25px;
 }
 
-.modal-box p{
-    color:#e5ddea;
+.letter-card p{
+    color:#e3d8e7;
     font-size:18px;
     line-height:1.9;
 }
 
-.close{
-    position:absolute;
-    top:15px;
-    right:20px;
-    background:none;
-    border:none;
-    color:white;
-    font-size:28px;
-    cursor:pointer;
+.letter-controls{
+    margin-top:25px;
 }
 
-/* FOOTER */
-footer{
+.letter-counter{
+    color:#9e91a5;
+    margin-top:13px;
+    font-size:12px;
+}
+
+@keyframes letterAppear{
+    from{
+        opacity:0;
+        transform:translateY(30px) scale(.97);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* CAPA FINAL */
+
+.final-content{
+    width:min(750px,92vw);
     text-align:center;
-    padding:35px 20px;
-    color:#8e8298;
-    font-size:13px;
+}
+
+.final-content .heart{
+    font-size:50px;
+    margin-bottom:25px;
+    animation:heartBeat 1.8s infinite;
+}
+
+.final-content h2{
+    font-size:clamp(50px,9vw,90px);
+    color:#f0cb70;
+    font-weight:400;
+    margin-bottom:30px;
+}
+
+.final-content p{
+    color:#dfd4e3;
+    font-size:19px;
+    line-height:1.9;
+}
+
+.final-signature{
+    margin-top:40px;
+    color:#eac66d;
+    letter-spacing:3px;
+    font-size:12px;
+    text-transform:uppercase;
+}
+
+@keyframes heartBeat{
+    0%,100%{transform:scale(1);}
+    50%{transform:scale(1.15);}
+}
+
+/* MÚSICA */
+
+.music{
+    position:fixed;
+    z-index:50;
+    bottom:22px;
+    right:22px;
+}
+
+.music button{
+    border:1px solid rgba(239,199,106,.45);
+    background:rgba(10,5,14,.7);
+    backdrop-filter:blur(10px);
+    color:#efd27f;
+    padding:11px 18px;
+    border-radius:30px;
+    cursor:pointer;
+    font-family:Georgia,"Times New Roman",serif;
+}
+
+/* OCULTAR CAPAS */
+
+.hidden{
+    display:none!important;
 }
 
 /* RESPONSIVE */
-@media(max-width:850px){
-    .photos{
-        grid-template-columns:repeat(2,1fr);
+
+@media(max-width:600px){
+
+    .layer{
+        padding:18px;
     }
 
-    .photo-card{
-        height:380px;
+    .gift-content p{
+        font-size:16px;
     }
 
-    .flowers{
-        grid-template-columns:repeat(2,1fr);
-    }
-}
-
-@media(max-width:500px){
-    .photos{
-        grid-template-columns:1fr;
+    .photo-frame{
+        height:52vh;
+        width:78vw;
     }
 
-    .photo-card{
-        height:480px;
+    .photo-title{
+        margin-bottom:15px;
     }
 
-    .flowers{
-        grid-template-columns:1fr;
+    .photo-caption{
+        font-size:14px;
+        margin:13px auto;
     }
 
-    section{
-        padding:70px 0;
+    .letter-card{
+        padding:35px 23px;
+        min-height:340px;
+    }
+
+    .letter-card h2{
+        font-size:27px;
+    }
+
+    .letter-card p{
+        font-size:16px;
+    }
+
+    .decor-flower{
+        opacity:.5;
+    }
+
+    .f5,.f6,.f7{
+        display:none;
+    }
+
+    .music{
+        bottom:12px;
+        right:12px;
     }
 }
 </style>
@@ -343,82 +515,82 @@ footer{
 
 <body>
 
-<div class="container">
+<div id="app">
 
 ```
-<!-- HERO -->
-<section class="hero">
+<div class="background-glow"></div>
+<div class="stars"></div>
 
-    <div class="hero-content">
+<!-- FLORES: SOLO DECORACIÓN -->
+<div class="decor-flower f1"><img src="4.png"></div>
+<div class="decor-flower f2"><img src="5.png"></div>
+<div class="decor-flower f3"><img src="6.png"></div>
+<div class="decor-flower f4"><img src="7.png"></div>
+<div class="decor-flower f5"><img src="8.png"></div>
+<div class="decor-flower f6"><img src="flor.png"></div>
+<div class="decor-flower f7"><img src="flor1.png"></div>
 
-        <div class="small-title">Para ti ✨</div>
+<!-- CAPA 1 -->
+<section class="layer active" id="layer1">
 
-        <h1>Hay personas que simplemente se sienten.</h1>
+    <div class="gift-content">
 
-        <div class="gold-line"></div>
+        <div class="eyebrow">Algo especial para ti</div>
+
+        <div class="gift" id="gift" onclick="openGift()">
+            <div class="bow"></div>
+            <div class="gift-lid"></div>
+            <div class="ribbon-h"></div>
+            <div class="gift-body"></div>
+            <div class="ribbon-v"></div>
+        </div>
+
+        <h1>Esto es tu regalo.</h1>
 
         <p>
-            No sé exactamente cuándo pasó,
-            pero entre conversaciones, sonrisas y pequeños momentos,
-            comenzaste a llamar mi atención de una manera diferente.
+            No es algo que puedas envolver.<br>
+            Es algo que quiero que descubras poco a poco.
         </p>
 
-        <button class="music-btn" onclick="toggleMusic()">
-            🎵 Escuchar Talisman
+        <button class="gold-button" onclick="openGift()">
+            Abrir mi regalo ✨
         </button>
 
-        <audio id="music" loop>
-            <source src="talisman.mp3" type="audio/mpeg">
-        </audio>
-
     </div>
 
 </section>
 
 
-<!-- FOTOS -->
-<section>
+<!-- CAPA 2 -->
+<section class="layer" id="layer2">
 
-    <div class="section-title">
-        <span>Un poco de ti</span>
-        <h2>Momentos que merecen quedarse</h2>
-    </div>
+    <div class="photo-experience">
 
-    <div class="photos">
+        <div class="step-label">Parte I · Tú</div>
 
-        <div class="photo-card" onclick="openModal(0)">
-            <img src="mi1.jpg" alt="Foto 1">
-            <div class="photo-overlay">
-                <span>01 · UN COMIENZO</span>
-            </div>
+        <div class="photo-title" id="photoTitle">
+            Quería empezar por aquí...
         </div>
 
-        <div class="photo-card" onclick="openModal(1)">
-            <img src="mi2.jpg" alt="Foto 2">
-            <div class="photo-overlay">
-                <span>02 · TU SONRISA</span>
-            </div>
+        <div class="photo-frame" id="photoFrame">
+            <img id="mainPhoto" src="mi1.jpg">
         </div>
 
-        <div class="photo-card" onclick="openModal(2)">
-            <img src="mi3.jpg" alt="Foto 3">
-            <div class="photo-overlay">
-                <span>03 · SIN DARME CUENTA</span>
-            </div>
+        <div class="photo-caption" id="photoCaption">
+            Porque hay personas que, sin hacer demasiado,
+            consiguen llamar la atención de una manera diferente.
         </div>
 
-        <div class="photo-card" onclick="openModal(3)">
-            <img src="mi4.jpg" alt="Foto 4">
-            <div class="photo-overlay">
-                <span>04 · DESCUBRIRTE</span>
-            </div>
+        <div class="photo-controls">
+
+            <button class="gold-button" id="photoButton" onclick="nextPhoto()">
+                Siguiente →
+            </button>
+
         </div>
 
-        <div class="photo-card" onclick="openModal(4)">
-            <img src="mi5.jpg" alt="Foto 5">
-            <div class="photo-overlay">
-                <span>05 · ME GUSTAS</span>
-            </div>
+        <div class="counter" id="photoCounter">
+            1 / 5
         </div>
 
     </div>
@@ -426,66 +598,29 @@ footer{
 </section>
 
 
-<!-- FLORES -->
-<section>
+<!-- CAPA 3 -->
+<section class="layer" id="layer3">
 
-    <div class="section-title">
-        <span>Para ti</span>
-        <h2>Un detalle amarillo 🌻</h2>
-    </div>
+    <div class="letters">
 
-    <div class="flowers">
+        <div class="step-label">Parte II · Lo que quería decirte</div>
 
-        <div class="flower">
-            <img src="4.png" alt="Flor">
-        </div>
+        <div class="letter-card" id="letterCard">
 
-        <div class="flower">
-            <img src="5.png" alt="Flor">
-        </div>
+            <h2 id="letterTitle"></h2>
 
-        <div class="flower">
-            <img src="6.png" alt="Flor">
-        </div>
+            <p id="letterText"></p>
 
-        <div class="flower">
-            <img src="7.png" alt="Flor">
-        </div>
+            <div class="letter-controls">
 
-        <div class="flower">
-            <img src="8.png" alt="Flor">
-        </div>
+                <button class="gold-button" id="letterButton" onclick="nextLetter()">
+                    Continuar →
+                </button>
 
-        <div class="flower">
-            <img src="flor.png" alt="Flor">
-        </div>
+                <div class="letter-counter" id="letterCounter"></div>
 
-        <div class="flower">
-            <img src="flor1.png" alt="Flor">
-        </div>
+            </div>
 
-        <div class="flower">
-            <img src="flor2.png" alt="Flor">
-        </div>
-
-        <div class="flower">
-            <img src="flor3.png" alt="Flor">
-        </div>
-
-        <div class="flower">
-            <img src="flor4.png" alt="Flor">
-        </div>
-
-        <div class="flower">
-            <img src="flor5.png" alt="Flor">
-        </div>
-
-        <div class="flower">
-            <img src="flor6.png" alt="Flor">
-        </div>
-
-        <div class="flower">
-            <img src="flor7.png" alt="Flor">
         </div>
 
     </div>
@@ -493,20 +628,23 @@ footer{
 </section>
 
 
-<!-- MENSAJE FINAL -->
-<section class="final">
+<!-- CAPA 4 -->
+<section class="layer" id="layer4">
 
-    <div class="final-box">
+    <div class="final-content">
+
+        <div class="heart">♡</div>
+
+        <div class="step-label">La última parte</div>
 
         <h2>Me gustas.</h2>
 
         <p>
-            No sé qué pasará mañana y tampoco quiero apresurar
-            una historia que recién comienza.
+            No sé qué pasará mañana.
+            No quiero adelantar una historia que recién comienza.
             <br><br>
-            Solo sé que disfruto conocerte,
-            que me gusta tenerte cerca
-            y que me gustaría seguir descubriéndote,
+            Solo sé que me gustas, que disfruto tenerte cerca
+            y que me gustaría seguir conquistándote,
             poco a poco.
             <br><br>
             Sin presión. Sin prisas.
@@ -514,38 +652,154 @@ footer{
             encuentren su momento.
         </p>
 
+        <div class="final-signature">
+            Y este pequeño detalle... era para ti.
+        </div>
+
     </div>
 
 </section>
-```
+
+
+<!-- MÚSICA -->
+
+<div class="music">
+
+    <button onclick="toggleMusic()" id="musicButton">
+        🎵 Talisman
+    </button>
 
 </div>
 
-<footer>
-    Hecho con intención ✨
-</footer>
-
-<!-- MODAL -->
-
-<div class="modal" id="modal">
-
-```
-<div class="modal-box">
-
-    <button class="close" onclick="closeModal()">×</button>
-
-    <h3 id="modalTitle"></h3>
-
-    <p id="modalText"></p>
-
-</div>
+<audio id="musicAudio" loop>
+    <source src="talisman.mp3" type="audio/mpeg">
+</audio>
 ```
 
 </div>
 
 <script>
 
-const messages = [
+/* CAMBIO DE CAPAS */
+
+function showLayer(number){
+
+    document.querySelectorAll(".layer").forEach(layer=>{
+        layer.classList.remove("active");
+    });
+
+    document.getElementById("layer"+number).classList.add("active");
+
+}
+
+
+/* ABRIR REGALO */
+
+function openGift(){
+
+    const gift=document.getElementById("gift");
+
+    gift.classList.add("opening");
+
+    setTimeout(()=>{
+
+        showLayer(2);
+
+        startMusic();
+
+    },700);
+
+}
+
+
+/* FOTOS */
+
+const photos=[
+
+    {
+        image:"mi1.jpg",
+        title:"Quería empezar por aquí...",
+        caption:"Porque hay personas que, sin hacer demasiado, consiguen llamar la atención de una manera diferente."
+    },
+
+    {
+        image:"mi2.jpg",
+        title:"Tu sonrisa...",
+        caption:"Hay sonrisas que duran segundos, pero dejan algo que permanece. La tuya tiene esa extraña manera de hacer que cualquier momento parezca un poquito más bonito."
+    },
+
+    {
+        image:"mi3.jpg",
+        title:"Sin darme cuenta...",
+        caption:"Primero fueron pequeños detalles, después ganas de hablar contigo y, cuando quise darme cuenta, ya había una persona que empezaba a importarme más de lo que imaginaba."
+    },
+
+    {
+        image:"mi4.jpg",
+        title:"Quizá todavía no lo sabes...",
+        caption:"Pero detrás de cada conversación hay alguien que disfruta conocerte, que encuentra bonita tu forma de ser y que cada día tiene un poquito más de curiosidad por descubrirte."
+    },
+
+    {
+        image:"mi5.jpg",
+        title:"Y llegué hasta aquí...",
+        caption:"Porque quería que este pequeño regalo tuviera algo de ti antes de decirte lo que realmente quería decirte."
+    }
+
+];
+
+let photoIndex=0;
+
+
+function nextPhoto(){
+
+    if(photoIndex < photos.length-1){
+
+        photoIndex++;
+
+        const frame=document.getElementById("photoFrame");
+
+        frame.style.animation="none";
+
+        setTimeout(()=>{
+
+            frame.style.animation="photoAppear .8s ease";
+
+        },20);
+
+        document.getElementById("mainPhoto").src=
+            photos[photoIndex].image;
+
+        document.getElementById("photoTitle").textContent=
+            photos[photoIndex].title;
+
+        document.getElementById("photoCaption").textContent=
+            photos[photoIndex].caption;
+
+        document.getElementById("photoCounter").textContent=
+            (photoIndex+1)+" / 5";
+
+        if(photoIndex===photos.length-1){
+
+            document.getElementById("photoButton").textContent=
+                "Continuar ✨";
+
+        }
+
+    }else{
+
+        showLayer(3);
+
+        loadLetter();
+
+    }
+
+}
+
+
+/* CARTAS */
+
+const letters=[
 
     {
         title:"Algo comenzó aquí...",
@@ -574,51 +828,84 @@ const messages = [
 
 ];
 
-
-function openModal(index){
-
-    document.getElementById("modalTitle").textContent =
-        messages[index].title;
-
-    document.getElementById("modalText").textContent =
-        messages[index].text;
-
-    document.getElementById("modal").classList.add("active");
-}
+let letterIndex=0;
 
 
-function closeModal(){
+function loadLetter(){
 
-    document.getElementById("modal").classList.remove("active");
+    document.getElementById("letterTitle").textContent=
+        letters[letterIndex].title;
+
+    document.getElementById("letterText").textContent=
+        letters[letterIndex].text;
+
+    document.getElementById("letterCounter").textContent=
+        (letterIndex+1)+" / "+letters.length;
 
 }
 
 
-document.getElementById("modal").addEventListener("click",function(e){
+function nextLetter(){
 
-    if(e.target === this){
-        closeModal();
+    if(letterIndex < letters.length-1){
+
+        letterIndex++;
+
+        const card=document.getElementById("letterCard");
+
+        card.style.animation="none";
+
+        setTimeout(()=>{
+
+            card.style.animation="letterAppear .8s ease";
+
+        },20);
+
+        loadLetter();
+
+    }else{
+
+        showLayer(4);
+
     }
 
-});
+}
+
+
+/* MÚSICA */
+
+const music=document.getElementById("musicAudio");
+const musicButton=document.getElementById("musicButton");
+
+
+function startMusic(){
+
+    music.play().then(()=>{
+
+        musicButton.textContent="⏸ Talisman";
+
+    }).catch(()=>{
+
+        musicButton.textContent="🎵 Talisman";
+
+    });
+
+}
 
 
 function toggleMusic(){
-
-    const music = document.getElementById("music");
-    const button = document.querySelector(".music-btn");
 
     if(music.paused){
 
         music.play();
 
-        button.textContent = "⏸ Pausar Talisman";
+        musicButton.textContent="⏸ Talisman";
 
     }else{
 
         music.pause();
 
-        button.textContent = "🎵 Escuchar Talisman";
+        musicButton.textContent="🎵 Talisman";
 
     }
 
